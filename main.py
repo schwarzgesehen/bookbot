@@ -7,10 +7,24 @@ def count_words(content):
     words = content.split()
     return len(words)
 
+def count_chars(content):
+    char_count = {}
+
+    for char in content.lower():
+        if char not in char_count:
+            char_count[char] = 1
+        else:
+            char_count[char] += 1 
+    
+    return char_count
+
 def main():
     content = get_book_content("books/frankenstein.txt")
-    count = count_words(content)
-    print(content)
-    print(count)
+    word_count = count_words(content)
+    char_count = count_chars(content)
+
+    #print(content)
+    #print(word_count)
+    print(char_count)
 
 main()
