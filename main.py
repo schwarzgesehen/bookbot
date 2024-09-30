@@ -1,11 +1,14 @@
-def print_book(path_to_file):
+def get_book_content(path_to_file):
     with open(path_to_file) as f:
         book_contents = f.read()
-    print(book_contents)
+    return book_contents
+
+def count_words(content):
+    words = content.split()
  
 
 def main():
-    print_book("books/frankenstein.txt")
+    content = get_book_content("books/frankenstein.txt")
+    print(content)
 
-if __name__ == '__main__':
-    main()
+main()
