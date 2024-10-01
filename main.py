@@ -18,13 +18,34 @@ def count_chars(content):
     
     return char_count
 
+def sort_on(dict):
+    return dict["count"]
+
+def analyze_chars(char_dict):
+    char_list = []
+    for char, count in char_dict.items():
+        if char.isalpha():
+            char_list.append({'char': char, 'count' : count})
+    
+    char_list.sort(reverse=True, key=sort_on)
+    return char_list
+
+
 def main():
-    content = get_book_content("books/frankenstein.txt")
+    book_path = "books/frankenstein.txt"
+    
+    content = get_book_content(book_path)
     word_count = count_words(content)
     char_count = count_chars(content)
+    
+    report = analyze_chars(char_count)
 
-    #print(content)
-    #print(word_count)
-    print(char_count)
+    print(f"--- Report of {book_path} ---")
+    print(f"{word_count} words found in document")
+    
+    for entry in report:
+        print(f"The '{entry['char']}' character was found {entry['count']} times") 
+
+    print("--- End report ---")
 
 main()
